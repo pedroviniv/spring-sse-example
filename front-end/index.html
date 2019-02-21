@@ -1,0 +1,23 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>SSE Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    
+    var snapshotsSource = new EventSource("http://localhost:8080/snapshots");
+    snapshotsSource.onmessage = event => {
+      const snapshotsEntries = document.getElementById('snapshots-entries');
+      const newSnapshotLi = document.createElement('li');
+      newSnapshotLi.innerHTML = event.data;
+      snapshotsEntries.appendChild(newSnapshotLi);
+    };
+
+  </script>
+</head>
+<body>
+  <ul id="snapshots-entries"></ul>
+</body>
+</html>
